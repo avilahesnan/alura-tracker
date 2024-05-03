@@ -4,19 +4,14 @@
             <BarraLateral />
         </div>
         <div class="column is-three-quarter">
-
+            <Formulario />
         </div>
     </main>
 </template>
 
 <script lang="ts" setup>
 
-import BarraLateral from "./components/BarraLateral.vue"
+import BarraLateral from './components/BarraLateral.vue'
+import Formulario from './components/FormularioComponent.vue'
 
 </script>
-
-<style>
-
-
-
-</style>
