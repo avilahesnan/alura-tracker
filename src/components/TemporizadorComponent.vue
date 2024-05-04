@@ -2,49 +2,42 @@
     <div class="is-flex is-align-items-center is-justify-content-space-between">
         <Cronometro 
             :tempoEmSegundos="tempoEmSegundos" />
-        <button
-            class="button"
-            :disabled="clicadoPlay"
-            @click="iniciar">
-                <span class="icon">
-                    <i class="fas fa-play"></i>
-                </span>
-                <span>play</span>
-        </button>
-        <button
-            class="button"
-            :disabled="clicadoStop"
-            @click="finalizar">
-                <span class="icon">
-                    <i class="fas fa-stop"></i>
-                </span>
-                <span>stop</span>
-        </button>
+        <Botao
+            @clicado="iniciar"
+            icone="fas fa-play"
+            texto="play"
+            :desabilitado="cronometroRodando" />
+        <Botao
+            @clicado="finalizar"
+            icone="fas fa-stop"
+            texto="stop"
+            :desabilitado="!cronometroRodando" />
     </div>
 </template>
 
 <script lang="ts" setup>
 
-import { ref } from 'vue'
+import { ref, defineEmits } from 'vue'
 
 import Cronometro from './CronometroComponent.vue'
+import Botao from './BotaoComponent.vue'
 
+const emit = defineEmits(['temporizadorFinalizado', 'iniciouTarefa'])
 const tempoEmSegundos = ref(0)
 const cronometro = ref(0)
-const clicadoPlay = ref(false)
-const clicadoStop = ref(true)
+const cronometroRodando = ref(false)
 function iniciar() {
-    clicadoPlay.value = true
-    clicadoStop.value = false
-    tempoEmSegundos.value = 0
+    cronometroRodando.value = true
     cronometro.value = setInterval(() => {
         tempoEmSegundos.value++
     }, 1000)
+    emit('iniciouTarefa', cronometroRodando.value)
 }
 function finalizar() {
-    clicadoPlay.value = false
-    clicadoStop.value = true
+    cronometroRodando.value = false
     clearInterval(cronometro.value)
+    emit('temporizadorFinalizado', tempoEmSegundos.value)
+    tempoEmSegundos.value = 0
 }
 
 </script>
