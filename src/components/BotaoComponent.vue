@@ -20,6 +20,7 @@ const props = defineProps({
     texto: String
 })
 const emit = defineEmits(['clicado'])
+
 function clicado() {
     emit('clicado')
 }

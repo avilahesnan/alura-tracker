@@ -14,6 +14,7 @@ header {
     height: 100vh;
     padding: 1rem;
 }
+
 @media only screen and (max-width: 768px) {
     header {
         padding: 2.5rem;

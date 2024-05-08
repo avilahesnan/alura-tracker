@@ -26,6 +26,7 @@ const emit = defineEmits(['temporizadorFinalizado', 'iniciouTarefa'])
 const tempoEmSegundos = ref(0)
 const cronometro = ref(0)
 const cronometroRodando = ref(false)
+
 function iniciar() {
     cronometroRodando.value = true
     cronometro.value = setInterval(() => {
@@ -33,6 +34,7 @@ function iniciar() {
     }, 1000)
     emit('iniciouTarefa', cronometroRodando.value)
 }
+
 function finalizar() {
     cronometroRodando.value = false
     clearInterval(cronometro.value)

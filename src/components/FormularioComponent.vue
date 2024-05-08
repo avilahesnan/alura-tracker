@@ -20,16 +20,23 @@
 
 <script lang="ts" setup>
 
-import { ref } from 'vue'
+import { ref, defineEmits } from 'vue'
 
 import Temporizador from './TemporizadorComponent.vue'
 
 const descricao = ref('')
 const iniciouTarefa = ref(false)
+const emit = defineEmits(['aoSalvarTarefa'])
+
 function finalizarTarefa(tempoDecorrido: number) {
+    emit('aoSalvarTarefa', {
+        duracaoEmSegundos: tempoDecorrido,
+        descricao: descricao.value
+    })
     descricao.value = ''
     iniciouTarefa.value = false
 }
+
 function inputDesabilitado() {
     iniciouTarefa.value = true
 }
