@@ -1,6 +1,6 @@
 <template>
     <section>
-        <strong>{{ tempoDecorrido() }}</strong>
+        <strong class="display">{{ tempoDecorrido() }}</strong>
     </section>
 </template>
 
@@ -14,3 +14,11 @@ const props = defineProps({
 const tempoDecorrido = () => new Date(props.tempoEmSegundos * 1000).toISOString().substr(11,8)
 
 </script>
+
+<style scoped>
+
+.display {
+    color: var(--texto-primary);
+}
+
+</style>

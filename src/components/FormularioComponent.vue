@@ -1,5 +1,5 @@
 <template>
-    <div class="box">
+    <div class="box formulario">
         <div class="columns">
             <div class="column is-8" role="form" aria-label="Formulário para criação de uma nova tarefa">
                 <input
@@ -42,3 +42,16 @@ function inputDesabilitado() {
 }
 
 </script>
+
+<style scoped>
+
+.formulario {
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+input {
+    background-color: var(--text-primary);
+}
+
+</style>

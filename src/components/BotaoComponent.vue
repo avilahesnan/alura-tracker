@@ -26,3 +26,12 @@ function clicado() {
 }
 
 </script>
+
+<style scoped>
+
+button {
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+</style>
