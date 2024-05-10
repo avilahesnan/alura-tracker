@@ -1,5 +1,5 @@
 <template>
-    <main class="columns is-gapless is-multiline" :class="{ 'modo-escuro': modoEscuroAtivo }">
+    <main class="columns is-gapless is-multiline" :class="{ 'modo-claro': modoEscuroAtivo }">
         <div class="column is-one-quarter">
             <BarraLateral 
                 @aoTemaAlterado="trocarTema" />
@@ -54,13 +54,13 @@ function trocarTema(ativo: boolean) {
 }
 
 main {
-    --bg-primary: #FFFFFF;
-    --text-primary: #000000;
+    --bg-primary: #000000;
+    --text-primary: #FFFFFF;
 }
 
-main.modo-escuro {
-    --bg-primary: #191919;
-    --text-primary: #4d4d4d;
+main.modo-claro {
+    --bg-primary: #FFFFFF;
+    --text-primary: #000000;
 }
 
 .conteudo {

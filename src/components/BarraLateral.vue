@@ -18,9 +18,9 @@ const emit = defineEmits(['aoTemaAlterado'])
 
 function textoBotao() {
     if(modoEscuroAtivo.value) {
-        return 'Desativar modo escuro'
+        return 'Desativar modo claro'
     }
-    return 'Ativar modo escuro'
+    return 'Ativar modo claro'
 }
 
 function alterarTema() {

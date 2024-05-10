@@ -50,8 +50,4 @@ function inputDesabilitado() {
     background-color: var(--bg-primary);
 }
 
-input {
-    background-color: var(--text-primary);
-}
-
 </style>
