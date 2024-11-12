@@ -5,41 +5,18 @@
                 @aoTemaAlterado="trocarTema" />
         </div>
         <div class="column is-three-quarter conteudo">
-            <Formulario 
-                @aoSalvarTarefa="salvarTarefa" />
-            <div class="lista">
-                <Tarefa 
-                    v-for="tarefa, index in tarefas"
-                    :key="index"
-                    :tarefa="tarefa" />
-                    <Box v-if="listaVazia()">
-                        Você não está muito produtivo hoje.
-                    </Box>
-            </div>
+            <RouterView />
         </div>
     </main>
 </template>
 
 <script lang="ts" setup>
 
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 
 import BarraLateral from './components/BarraLateral.vue'
-import Formulario from './components/FormularioComponent.vue'
-import Tarefa from './components/TarefaComponent.vue'
-import Box from './components/BoxComponent.vue'
-import ITarefa from './interfaces/ITarefa'
 
-const tarefas = ref<ITarefa[]>([])
 const modoEscuroAtivo = ref(false)
-
-function listaVazia() {
-    return tarefas.value.length === 0
-}
-
-function salvarTarefa(tarefa: ITarefa) {
-    tarefas.value.push(tarefa)
-}
 
 function trocarTema(ativo: boolean) {
     modoEscuroAtivo.value = ativo
@@ -47,15 +24,11 @@ function trocarTema(ativo: boolean) {
 
 </script>
 
-<style scoped>
-
-.lista {
-    padding: 1.25rem;
-}
+<style lang="css" scoped>
 
 main {
-    --bg-primary: #000000;
-    --text-primary: #FFFFFF;
+    --bg-primary: #2b2d42;
+    --text-primary: #DDDDDD;
 }
 
 main.modo-claro {

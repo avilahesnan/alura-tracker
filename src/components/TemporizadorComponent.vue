@@ -1,7 +1,10 @@
 <template>
     <div class="is-flex is-align-items-center is-justify-content-space-between">
-        <Cronometro 
-            :tempoEmSegundos="tempoEmSegundos" />
+        <strong class="containerTemp">
+            <Cronometro
+                icone="fas fa-clock"
+                :tempoEmSegundos="tempoEmSegundos" />
+        </strong>
         <Botao
             @clicado="iniciar"
             icone="fas fa-play"
@@ -43,3 +46,13 @@ function finalizar() {
 }
 
 </script>
+
+<style lang="css" scoped>
+
+.containerTemp {
+    background-color: var(--text-primary);
+    padding: 8px;
+    border-radius: 10%;
+}
+
+</style>

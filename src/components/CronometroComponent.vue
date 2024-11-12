@@ -1,6 +1,11 @@
 <template>
     <section>
-        <strong class="display">{{ tempoDecorrido() }}</strong>
+        <strong class="display">
+            <span>
+                <i :class="props.icone"></i>
+            </span>
+            {{ tempoDecorrido() }}
+        </strong>
     </section>
 </template>
 
@@ -9,7 +14,8 @@
 import { defineProps } from 'vue'
 
 const props = defineProps({
-    tempoEmSegundos: { type: Number, default: 0 }
+    tempoEmSegundos: { type: Number, default: 0 },
+    icone: String
 })
 const tempoDecorrido = () => new Date(props.tempoEmSegundos * 1000).toISOString().substr(11,8)
 
@@ -18,7 +24,7 @@ const tempoDecorrido = () => new Date(props.tempoEmSegundos * 1000).toISOString(
 <style scoped>
 
 .display {
-    color: var(--text-primary);
+    color: var(--bg-primary);
 }
 
 </style>

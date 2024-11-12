@@ -5,7 +5,8 @@
                 {{ props.tarefa?.descricao || 'Tarefa sem descrição'}}
             </div>
             <div class="column">
-                <Cronometro 
+                <Cronometro
+                    icone="fas fa-clock"
                     :tempoEmSegundos="props.tarefa?.duracaoEmSegundos" />
             </div>
         </div>
