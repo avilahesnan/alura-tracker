@@ -37,10 +37,13 @@
 import { ref, defineEmits, computed } from 'vue'
 
 import Temporizador from './TemporizadorComponent.vue'
-import { useStore } from 'vuex';
-import { key } from '@/store';
+import { useStore } from 'vuex'
+import { key } from '@/store'
+import { TipoNotificacao } from '@/interfaces/INotificacao'
+import useNotificador from '@/hooks/notificador'
 
 const store = useStore(key)
+const notificador = useNotificador()
 const descricao = ref('')
 const idProjeto = ref('')
 const iniciouTarefa = ref(false)
@@ -49,10 +52,15 @@ const emit = defineEmits(['aoSalvarTarefa'])
 const projetos = computed(() => store.state.projetos)
 
 function finalizarTarefa(tempoDecorrido: number) {
+    const projeto = store.state.projetos.find(proj => proj.id == idProjeto.value)
+    if (!projeto) {
+        notificador.notificar('Ops!', 'Selecione um projeto antes de finalizar a tarefa!', TipoNotificacao.ATENCAO)
+        return
+    }
     emit('aoSalvarTarefa', {
         duracaoEmSegundos: tempoDecorrido,
         descricao: descricao.value,
-        projetos: projetos.value.find(proj => proj.id == idProjeto.value)
+        projeto: projetos.value.find(proj => proj.id == idProjeto.value)
     })
     descricao.value = ''
     iniciouTarefa.value = false
