@@ -5,6 +5,7 @@
                 @aoTemaAlterado="trocarTema" />
         </div>
         <div class="column is-three-quarter conteudo">
+            <Notificacoes />
             <RouterView />
         </div>
     </main>
@@ -15,6 +16,7 @@
 import { ref } from 'vue'
 
 import BarraLateral from './components/BarraLateral.vue'
+import Notificacoes from './components/NotificacoesComponent.vue';
 
 const modoEscuroAtivo = ref(false)
 

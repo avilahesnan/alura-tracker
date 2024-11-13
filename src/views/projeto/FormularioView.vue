@@ -1,6 +1,5 @@
 <template>
-    <section class="projetos">
-        <h1 class="title">Projetos</h1>
+    <section>
         <form @submit.prevent="salvar">
             <div class="field">
                 <label for="nomeDoProjeto" class="label">
@@ -24,25 +23,33 @@
 
 <script lang="ts" setup>
 
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useStore } from '@/store';
 import router from '@/router';
+import { ADICIONAR_PROJETO, ALTERAR_PROJETO } from '@/store/type-mutations';
 
 const store = useStore()
+const id = ref(router.currentRoute.value.params.id)
 const nomeDoProjeto = ref<string>('')
 
 function salvar() {
-    store.commit('ADICIONA_PROJETO', nomeDoProjeto.value)
+    if (id.value) {
+        store.commit(ALTERAR_PROJETO, {
+            id: id.value,
+            nome: nomeDoProjeto.value
+        })
+    } else {
+        store.commit(ADICIONAR_PROJETO, nomeDoProjeto.value)
+    }
     nomeDoProjeto.value = ''
     router.push('/projetos')
 }
 
+onMounted(() => {
+    if (id.value) {
+        const projeto = store.state.projetos.find(proj => proj.id == id.value)
+        nomeDoProjeto.value = projeto?.nome || ''
+    }
+})
+
 </script>
-
-<style lang="css" scoped>
-
-.projetos {
-    padding: 1.25rem;
-}
-
-</style>
