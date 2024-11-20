@@ -40,13 +40,15 @@
 
 import { computed } from 'vue';
 import { useStore } from '@/store';
-import { EXCLUIR_PROJETO } from '@/store/type-mutations';
+import { OBETER_PROJETOS, REMOVER_PROJETOS } from '@/store/type-actions';
 
 const store = useStore()
 const projetos = computed(() => store.state.projetos)
 
+store.dispatch(OBETER_PROJETOS)
+
 function excluir(id: string) {
-    store.commit(EXCLUIR_PROJETO, id)
+    store.dispatch(REMOVER_PROJETOS, id)
 }
 
 </script>

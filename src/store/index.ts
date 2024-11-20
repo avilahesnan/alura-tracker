@@ -1,9 +1,11 @@
 import IProjeto from "@/interfaces/IProjeto";
 import { InjectionKey } from "vue";
 import { createStore, Store, useStore as vuexUseStore } from "vuex";
-import { ADICIONAR_PROJETO, ADICIONAR_TAREFA, ALTERAR_PROJETO, ALTERAR_TAREFA, EXCLUIR_PROJETO, EXCLUIR_TAREFA, NOTIFICAR } from "./type-mutations";
+import { ADICIONAR_PROJETO, ADICIONAR_TAREFA, ALTERAR_PROJETO, ALTERAR_TAREFA, DEFINIR_PROJETOS, DEFINIR_TAREFAS, EXCLUIR_PROJETO, EXCLUIR_TAREFA, NOTIFICAR } from "./type-mutations";
 import ITarefa from "@/interfaces/ITarefa";
 import INoticiacao from "@/interfaces/INotificacao";
+import { CADASTRAR_PROJETOS, CADASTRAR_TAREFA, EDITAR_PROJETOS, EDITAR_TAREFA, OBETER_PROJETOS, OBETER_TAREFAS, REMOVER_PROJETOS, REMOVER_TAREFA } from "./type-actions";
+import clienteHttp from "@/http";
 
 interface Estado {
     projetos: IProjeto[],
@@ -20,8 +22,10 @@ export const store = createStore<Estado>({
         notificacoes: []
     },
     mutations: {
+        [DEFINIR_TAREFAS](state, tarefas: ITarefa[]) {
+            state.tarefas = tarefas
+        },
         [ADICIONAR_TAREFA](state, tarefa: ITarefa) { 
-            tarefa.id = new Date().toISOString()
             state.tarefas.push(tarefa)
         },
         [ALTERAR_TAREFA](state, tarefa: ITarefa) {
@@ -31,11 +35,10 @@ export const store = createStore<Estado>({
         [EXCLUIR_TAREFA](state, id: string) {
             state.tarefas = state.tarefas.filter(p => p.id != id)
         },
-        [ADICIONAR_PROJETO](state, nomeDoProjeto: string) {
-            const projeto = {
-                id: new Date().toISOString(),
-                nome: nomeDoProjeto
-            } as IProjeto
+        [DEFINIR_PROJETOS](state, projetos: IProjeto[]) {
+            state.projetos = projetos
+        },
+        [ADICIONAR_PROJETO](state, projeto: IProjeto) {
             state.projetos.push(projeto)
         },
         [ALTERAR_PROJETO](state, projeto: IProjeto) {
@@ -51,6 +54,40 @@ export const store = createStore<Estado>({
             setTimeout(() => {
                 state.notificacoes = state.notificacoes.filter(noti => noti.id != novaNotificacao.id)
             }, 3000)
+        }
+    },
+    actions: {
+        [OBETER_PROJETOS]({ commit}) {
+            clienteHttp.get('projetos')
+                .then(resposta => commit(DEFINIR_PROJETOS, resposta.data))
+        },
+        [CADASTRAR_PROJETOS]({ commit }, nomeDoProjeto: string) {
+            return clienteHttp.post('projetos', {
+                nome: nomeDoProjeto
+            })
+                .then(resposta => commit(ADICIONAR_PROJETO, resposta.data))
+        },
+        [EDITAR_PROJETOS](state, projeto: IProjeto) {
+            return clienteHttp.put(`projetos/${projeto.id}`, projeto)
+        },
+        [REMOVER_PROJETOS]({ commit }, id: string) {
+            return clienteHttp.delete(`projetos/${id}`)
+                .then(() => commit(EXCLUIR_PROJETO, id))
+        },
+        [OBETER_TAREFAS]({ commit}) {
+            clienteHttp.get('tarefas')
+                .then(resposta => commit(DEFINIR_TAREFAS, resposta.data))
+        },
+        [CADASTRAR_TAREFA]({ commit }, tarefa: ITarefa) {
+            return clienteHttp.post('tarefas', tarefa)
+                .then(resposta => commit(ADICIONAR_TAREFA, resposta.data))
+        },
+        [EDITAR_TAREFA](state, tarefa: ITarefa) {
+            return clienteHttp.put(`tarefas/${tarefa.id}`, tarefa)
+        },
+        [REMOVER_TAREFA]({ commit }, id: string) {
+            return clienteHttp.delete(`tarefas/${id}`)
+                .then(() => commit(EXCLUIR_TAREFA, id))
         },
     }
 })

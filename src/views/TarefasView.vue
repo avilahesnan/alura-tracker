@@ -15,21 +15,27 @@
 
 <script lang="ts" setup>
 
-import { ref } from 'vue'
+import { computed } from 'vue'
 
 import Formulario from '@/components/FormularioComponent.vue'
 import Tarefa from '@/components/TarefaComponent.vue'
 import Box from '@/components/BoxComponent.vue'
 import ITarefa from '@/interfaces/ITarefa'
+import { useStore } from '@/store'
+import { CADASTRAR_TAREFA, OBETER_PROJETOS, OBETER_TAREFAS } from '@/store/type-actions'
 
-const tarefas = ref<ITarefa[]>([])
+const store = useStore()
+const tarefas = computed(() => store.state.tarefas)
+
+store.dispatch(OBETER_TAREFAS)
+store.dispatch(OBETER_PROJETOS)
 
 function listaVazia() {
     return tarefas.value.length === 0
 }
 
-function salvarTarefa(tarefa: ITarefa) {
-    tarefas.value.push(tarefa)
+function salvarTarefa(tarefa: ITarefa): void {
+    store.dispatch(CADASTRAR_TAREFA, tarefa)
 }
 
 </script>

@@ -26,23 +26,24 @@
 import { onMounted, ref } from 'vue';
 import { useStore } from '@/store';
 import router from '@/router';
-import { ADICIONAR_PROJETO, ALTERAR_PROJETO, NOTIFICAR } from '@/store/type-mutations';
 import { TipoNotificacao } from '@/interfaces/INotificacao';
 import { notificarMixin } from '@/mixins/notificar';
+import { CADASTRAR_PROJETOS, EDITAR_PROJETOS } from '@/store/type-actions';
 
 const store = useStore()
 const id = ref(router.currentRoute.value.params.id)
 const nomeDoProjeto = ref<string>('')
 
 function salvar() {
+    console.log(id.value)
     if (id.value) {
-        store.commit(ALTERAR_PROJETO, {
+        store.dispatch(EDITAR_PROJETOS, {
             id: id.value,
             nome: nomeDoProjeto.value
         })
-        notificarMixin.notificar('Projeto Alterado', 'O projeto foi alterado com sucesso!', TipoNotificacao.SUCESSO)
+        notificarMixin.notificar('Projeto Alterado', 'O projeto foi alterado com sucesso!', TipoNotificacao.SUCESSO) 
     } else {
-        store.commit(ADICIONAR_PROJETO, nomeDoProjeto.value)
+        store.dispatch(CADASTRAR_PROJETOS, nomeDoProjeto.value)
         notificarMixin.notificar('Projeto Adicionado', 'Um novo projeto foi adicionado com sucesso!', TipoNotificacao.SUCESSO)
     }
     nomeDoProjeto.value = ''
