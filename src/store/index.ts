@@ -29,11 +29,11 @@ export const store = createStore<Estado>({
             state.tarefas.push(tarefa)
         },
         [ALTERAR_TAREFA](state, tarefa: ITarefa) {
-            const index = state.tarefas.findIndex(p => p.id == tarefa.id)
+            const index = state.tarefas.findIndex(tare => tare.id == tarefa.id)
             state.tarefas[index] = tarefa
         },
         [EXCLUIR_TAREFA](state, id: string) {
-            state.tarefas = state.tarefas.filter(p => p.id != id)
+            state.tarefas = state.tarefas.filter(tare => tare.id != id)
         },
         [DEFINIR_PROJETOS](state, projetos: IProjeto[]) {
             state.projetos = projetos
@@ -82,8 +82,9 @@ export const store = createStore<Estado>({
             return clienteHttp.post('tarefas', tarefa)
                 .then(resposta => commit(ADICIONAR_TAREFA, resposta.data))
         },
-        [EDITAR_TAREFA](state, tarefa: ITarefa) {
+        [EDITAR_TAREFA]({ commit }, tarefa: ITarefa) {
             return clienteHttp.put(`tarefas/${tarefa.id}`, tarefa)
+                .then(() => commit(ALTERAR_TAREFA, tarefa))
         },
         [REMOVER_TAREFA]({ commit }, id: string) {
             return clienteHttp.delete(`tarefas/${id}`)

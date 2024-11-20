@@ -1,6 +1,6 @@
 <template>
     <Box>
-        <div class="columns">
+        <div class="columns clicavel" @click="tarefaClicada">
             <div class="column is-4">
                 {{ props.tarefa?.descricao || 'Tarefa sem descrição'}}
             </div>
@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 
-import { defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 
 import Cronometro from './CronometroComponent.vue'
 import Box from './BoxComponent.vue'
@@ -26,5 +26,18 @@ import Box from './BoxComponent.vue'
 const props = defineProps({
     tarefa: Object
 })
+const emit = defineEmits(['tarefaClicada'])
+
+function tarefaClicada(): void {
+    emit('tarefaClicada')
+}
 
 </script>
+
+<style lang="css" scoped>
+
+.clicavel {
+    cursor: pointer;
+}
+
+</style>
