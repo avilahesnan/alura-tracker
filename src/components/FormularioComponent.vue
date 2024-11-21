@@ -49,12 +49,12 @@ const idProjeto = ref('')
 const iniciouTarefa = ref(false)
 const emit = defineEmits(['aoSalvarTarefa'])
 
-const projetos = computed(() => store.state.projetos)
+const projetos = computed(() => store.state.projeto.projetos)
 
 function finalizarTarefa(tempoDecorrido: number) {
-    const projeto = store.state.projetos.find(proj => proj.id == idProjeto.value)
+    const projeto = store.state.projeto.projetos.find(proj => proj.id == idProjeto.value)
     if (!projeto) {
-        notificador.notificar('Ops!', 'Selecione um projeto antes de finalizar a tarefa!', TipoNotificacao.ATENCAO)
+        notificador.notificar('Ops!', 'Selecione um projeto antes de finalizar a tarefa!', TipoNotificacao.FALHA)
         return
     }
     emit('aoSalvarTarefa', {

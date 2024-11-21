@@ -35,16 +35,15 @@ const id = ref(router.currentRoute.value.params.id)
 const nomeDoProjeto = ref<string>('')
 
 function salvar() {
-    console.log(id.value)
     if (id.value) {
         store.dispatch(EDITAR_PROJETOS, {
             id: id.value,
             nome: nomeDoProjeto.value
         })
-        notificarMixin.notificar('Projeto Alterado', 'O projeto foi alterado com sucesso!', TipoNotificacao.SUCESSO) 
+            .then(() => notificarMixin.notificar('Projeto Alterado', 'O projeto foi alterado!', TipoNotificacao.SUCESSO))
     } else {
         store.dispatch(CADASTRAR_PROJETOS, nomeDoProjeto.value)
-        notificarMixin.notificar('Projeto Adicionado', 'Um novo projeto foi adicionado com sucesso!', TipoNotificacao.SUCESSO)
+            .then(() => notificarMixin.notificar('Projeto Adicionado', 'Um novo projeto foi adicionado!', TipoNotificacao.SUCESSO))
     }
     nomeDoProjeto.value = ''
     router.push('/projetos')
@@ -52,7 +51,7 @@ function salvar() {
 
 onMounted(() => {
     if (id.value) {
-        const projeto = store.state.projetos.find(proj => proj.id == id.value)
+        const projeto = store.state.projeto.projetos.find(proj => proj.id == id.value)
         nomeDoProjeto.value = projeto?.nome || ''
     }
 })

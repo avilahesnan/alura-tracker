@@ -2,7 +2,7 @@
     <section>
         <strong class="display">
             <span>
-                <i :class="props.icone"></i>
+                <i :class="props.icone" />
             </span>
             {{ tempoDecorrido() }}
         </strong>

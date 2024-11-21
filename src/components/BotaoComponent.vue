@@ -4,7 +4,7 @@
         :disabled="props.desabilitado"
         @click="clicado">
             <span class="icon">
-                <i :class="props.icone"></i>
+                <i :class="props.icone" />
             </span>
             <span>{{ props.texto }}</span>
     </button>
