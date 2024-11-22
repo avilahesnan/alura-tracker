@@ -21,7 +21,7 @@ const tempoDecorrido = () => new Date(props.tempoEmSegundos * 1000).toISOString(
 
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 
 .display {
     color: var(--bg-primary);

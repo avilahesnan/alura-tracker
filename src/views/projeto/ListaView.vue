@@ -38,11 +38,11 @@
 
 <script lang="ts" setup>
 
-import { computed } from 'vue';
-import { useStore } from '@/store';
-import { OBETER_PROJETOS, REMOVER_PROJETOS } from '@/store/type-actions';
-import { TipoNotificacao } from '@/interfaces/INotificacao';
-import { notificarMixin } from '@/mixins/notificar';
+import { computed } from 'vue'
+import { useStore } from '@/store'
+import { OBETER_PROJETOS, REMOVER_PROJETOS } from '@/store/type-actions'
+import { TipoNotificacao } from '@/interfaces/INotificacao'
+import { notificarMixin } from '@/mixins/notificar'
 
 const store = useStore()
 store.dispatch(OBETER_PROJETOS)

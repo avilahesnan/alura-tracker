@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
 
-import { TipoNotificacao } from '@/interfaces/INotificacao';
+import { TipoNotificacao } from '@/interfaces/INotificacao'
 import { useStore } from '@/store'
 import { computed } from 'vue'
 

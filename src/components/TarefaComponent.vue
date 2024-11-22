@@ -13,7 +13,7 @@
                     :tempoEmSegundos="props.tarefa?.duracaoEmSegundos" />
             </div>
             <div class="column">
-                <span class="is-danger" @click="excluirTarefa(props.tarefa?.id)">
+                <span @click="excluirTarefa(props.tarefa?.id)">
                     <i class="fas fa-trash" />
                 </span>
             </div>
@@ -27,9 +27,9 @@ import { defineProps, defineEmits } from 'vue'
 
 import Cronometro from './CronometroComponent.vue'
 import Box from './BoxComponent.vue'
-import { TipoNotificacao } from '@/interfaces/INotificacao';
-import { notificarMixin } from '@/mixins/notificar';
-import { REMOVER_TAREFA } from '@/store/type-actions';
+import { TipoNotificacao } from '@/interfaces/INotificacao'
+import { notificarMixin } from '@/mixins/notificar'
+import { REMOVER_TAREFA } from '@/store/type-actions'
 import { useStore } from '@/store'
 
 const store = useStore()

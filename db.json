@@ -9,7 +9,7 @@
     {
       "id": "c31d",
       "duracaoEmSegundos": 2,
-      "descricao": "python",
+      "descricao": "python3",
       "projeto": {
         "id": "1475",
         "nome": "Estudo de Python"

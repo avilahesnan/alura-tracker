@@ -46,7 +46,7 @@ function alterarTema() {
 
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 
 header {
     background: #0d3b66;

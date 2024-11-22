@@ -1,8 +1,8 @@
-import Formulario from "@/views/projeto/FormularioView.vue";
-import Lista from "@/views/projeto/ListaView.vue";
-import Projetos from "@/views/ProjetosView.vue";
-import Tarefas from "@/views/TarefasView.vue";
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import Formulario from "@/views/projeto/FormularioView.vue"
+import Lista from "@/views/projeto/ListaView.vue"
+import Projetos from "@/views/ProjetosView.vue"
+import Tarefas from "@/views/TarefasView.vue"
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router"
 
 const routes: RouteRecordRaw[] = [
     {

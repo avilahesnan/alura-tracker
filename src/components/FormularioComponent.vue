@@ -72,7 +72,7 @@ function inputDesabilitado() {
 
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 
 .formulario {
     color: var(--text-primary);

@@ -1,9 +1,9 @@
-import clienteHttp from "@/http";
-import ITarefa from "@/interfaces/ITarefa";
-import { Estado } from "@/store";
-import { OBETER_TAREFAS, CADASTRAR_TAREFA, EDITAR_TAREFA, REMOVER_TAREFA } from "@/store/type-actions";
-import { DEFINIR_TAREFAS, ADICIONAR_TAREFA, ALTERAR_TAREFA, EXCLUIR_TAREFA } from "@/store/type-mutations";
-import { Module } from "vuex";
+import clienteHttp from "@/http"
+import ITarefa from "@/interfaces/ITarefa"
+import { Estado } from "@/store"
+import { OBETER_TAREFAS, CADASTRAR_TAREFA, EDITAR_TAREFA, REMOVER_TAREFA } from "@/store/type-actions"
+import { DEFINIR_TAREFAS, ADICIONAR_TAREFA, ALTERAR_TAREFA, EXCLUIR_TAREFA } from "@/store/type-mutations"
+import { Module } from "vuex"
 
 export interface EstadoTarefa {
     tarefas: ITarefa[]
@@ -26,8 +26,12 @@ export const tarefa: Module<EstadoTarefa, Estado> = {
         }
     },
     actions: {
-        [OBETER_TAREFAS]({ commit}) {
-            clienteHttp.get('tarefas')
+        [OBETER_TAREFAS]({ commit }, filtro: string) {
+            let url = 'tarefas' 
+            if(filtro) {
+                url += `?descricao=${filtro}`
+            }
+            clienteHttp.get(url)
                 .then(resposta => commit(DEFINIR_TAREFAS, resposta.data))
         },
         [CADASTRAR_TAREFA]({ commit }, tarefa: ITarefa) {

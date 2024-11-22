@@ -1,9 +1,9 @@
-import clienteHttp from "@/http";
-import IProjeto from "@/interfaces/IProjeto";
-import { Estado } from "@/store";
-import { CADASTRAR_PROJETOS, EDITAR_PROJETOS, OBETER_PROJETOS, REMOVER_PROJETOS } from "@/store/type-actions";
-import { ADICIONAR_PROJETO, ALTERAR_PROJETO, DEFINIR_PROJETOS, EXCLUIR_PROJETO } from "@/store/type-mutations";
-import { Module } from "vuex";
+import clienteHttp from "@/http"
+import IProjeto from "@/interfaces/IProjeto"
+import { Estado } from "@/store"
+import { CADASTRAR_PROJETOS, EDITAR_PROJETOS, OBETER_PROJETOS, REMOVER_PROJETOS } from "@/store/type-actions"
+import { ADICIONAR_PROJETO, ALTERAR_PROJETO, DEFINIR_PROJETOS, EXCLUIR_PROJETO } from "@/store/type-mutations"
+import { Module } from "vuex"
 
 export interface EstadoProjeto {
     projetos: IProjeto[]

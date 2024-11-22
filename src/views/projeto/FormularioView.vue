@@ -23,12 +23,12 @@
 
 <script lang="ts" setup>
 
-import { onMounted, ref } from 'vue';
-import { useStore } from '@/store';
-import router from '@/router';
-import { TipoNotificacao } from '@/interfaces/INotificacao';
-import { notificarMixin } from '@/mixins/notificar';
-import { CADASTRAR_PROJETOS, EDITAR_PROJETOS } from '@/store/type-actions';
+import { onMounted, ref } from 'vue'
+import { useStore } from '@/store'
+import router from '@/router'
+import { TipoNotificacao } from '@/interfaces/INotificacao'
+import { notificarMixin } from '@/mixins/notificar'
+import { CADASTRAR_PROJETOS, EDITAR_PROJETOS } from '@/store/type-actions'
 
 const store = useStore()
 const id = ref(router.currentRoute.value.params.id)

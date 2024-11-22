@@ -16,7 +16,7 @@
 import { ref } from 'vue'
 
 import BarraLateral from './components/BarraLateral.vue'
-import Notificacoes from './components/NotificacoesComponent.vue';
+import Notificacoes from './components/NotificacoesComponent.vue'
 
 const modoEscuroAtivo = ref(false)
 

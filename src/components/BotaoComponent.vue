@@ -27,7 +27,7 @@ function clicado() {
 
 </script>
 
-<style scoped>
+<style lang="css" scoped>
 
 button {
     color: var(--text-primary);
